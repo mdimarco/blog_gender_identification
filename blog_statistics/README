@@ -9,16 +9,32 @@ See blog_stats_main.py comments for info on how to run/print each set of stats
 In short:
 	1. aggregate_stats.py 
 		- cleans/condenses blog data and returns aggregated word counts and simple statistics on words, returning them in a dictionary
+
 	2. blog_stat_helpers.py 
 		- a cleaning function for trimming words (removing punctuation, etc..)
 		- a condensing function for combining words with similar words (i,im,i'm --> FIRST_PERSON, etc..)
+
 	3. blog_stats_main.py
 		- main function to run
+
 	4. possessive_stats.py
 		-runs a short function printing possessive words found. Didn't get too much out of this, but there's definitely more to explore
+
 	5. punctuation_stats.py
-		-tracks/prints punctuation frequencies across male/female posts. Another that didn't immediately yield too much information but could definitely be expanded upon
-	6. term_stats.py
-		-computes statistics for common words (using cleaning/condensing from the helper methods) across the blog posts. This immediately yielded interesting results. By finding the % of occurance of some words (or groups of words) it became visible that first person words are more common in female blog posts. 
-		-TODO: apply a z-score and determine statistical significance of findings
+		-tracks/prints punctuation frequencies across male/female posts. Another that didn't immediately yield too much information but could definitely be expanded upon.
+
+	6. significant_word_stats.py
+		-a trial to see how certain words may be significant in gender discrimination. This opens the txt file produced by term_stats.py (seen below)
+		-creates a new file consisting of gender,blogpost with the blog post being a bag of  words deemed significant by term_stats.py  
+
+	7. term_stats.py
+		-computes statistics for common words (using cleaning/condensing from the helper methods) across the blog posts. This immediately yielded interesting results. By finding the z-scores of word frequency in male and female blog posts, and taking the male:female ratio of these, a measure of word significance has been computed.
+
+		-writes the significant words to a file "significant_word.txt" in the data folder. For good results, a relatively large amount of significant terms should be recorded, so that each blog post will have at least a few significant terms
+
+		Usage:
+		python term_stats.py -data ../data/blog-gender-dataset-clean.csv -n 1500
+		(use lower n for more readable printout, recommended to comment out printing for n=1500)
+
+		-decides significant by z-score ratio of word frequency between male and female blog posts. This is definitely the most variable/experimental piece of the program, and one that could certainly be tuned for better results.
 	

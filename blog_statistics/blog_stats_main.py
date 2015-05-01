@@ -25,8 +25,8 @@ with open(opts.data, 'rU') as f:
 ####################################
 #Code in punctuation_stats.py
 #UNCOMMENT FOR PUNCTUATION STATS
-#from punctuation_stats import punctuation_frequencies
-#punctuation_frequencies(data)
+from punctuation_stats import punctuation_frequencies
+punctuation_frequencies(data)
 ####################################
 
 
@@ -37,7 +37,8 @@ with open(opts.data, 'rU') as f:
 word_cleaner = blog_stat_helpers.clean
 word_condenser = blog_stat_helpers.condense_word
 
-	
+
+
 
 stats = aggregate_stats(word_cleaner,word_condenser,data)
 #Average word lengths aggregated into buckets
@@ -55,29 +56,18 @@ seen = stats["seen"]
 
 ####################################
 #UNCOMMENT FOR POSSESSIVE STATISTICS
-#possess = stats["possessives"]
-#from possessive_stats import print_possessive_info
-#print_possessive_info(possess)
+possess = stats["possessives"]
+from possessive_stats import print_possessive_info
+print_possessive_info(possess)
 ####################################
 
-
-
-
-
-
-####################################
-#UNCOMMENT FOR POSSESSIVE STATISTICS
-#possess = stats["possessives"]
-#from possessive_stats import print_possessive_info
-#print_possessive_info(possess)
-####################################
 
 
 
 
 #compares terms based on frequency in
 #male vs. female blogs
-
+####################################
 ####################################
 #UNCOMMENT FOR TERM STATISTICS
 
@@ -88,10 +78,27 @@ if not opts.n:
 else:
 	n=int(opts.n)
 from term_stats import term_stats
-term_stats(seen,n)
+top_diffs = term_stats(seen,n)
+####################################
 ####################################
 
 
+#Uses what term_stats has deemed the most significant
+#(and has saved in data/significant_words.txt) to write
+#A new version of the blog posts that only contains features
+#deemed significant by z-score ratios
 
+####################################
+####################################
+#UNCOMMENT FOR TRACKING SIGNIFICANT WORDS
+#from significant_word_stats import track_sig_words
+#blog_as_significant = track_sig_words(word_cleaner,word_condenser,data)
 
+####################################
+####################################
+
+with open("../data/blog-significant-words.csv","w") as blog_file:
+	sig_writer = csv.writer(blog_file,quoting=csv.QUOTE_ALL)
+	for row in blog_as_significant:
+		sig_writer.writerow(row)
 

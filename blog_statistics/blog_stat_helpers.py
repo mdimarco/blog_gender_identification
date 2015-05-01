@@ -9,6 +9,7 @@ def clean(word):
 	word = re.sub("www.[^\s]+","URL",word)
 	word = re.sub("http://[^\s]+","URL",word)
 	word = re.sub("https://[^\s]+","URL",word)
+	word = re.sub(" [bcdefghjlmnopqstvwxz] "," ",word)
 	return word
 
 
@@ -26,7 +27,7 @@ third_person = {"their","them","they"}
 conjunction = {"and","or","but","because","so"}
 male = {"he","his","him","dude","man","men","boy"}
 female = {"she","her","gal","girl","woman","women"}
-
+question = {"where","what","who","when","why"}
 def condense_word(word):
 	if word in demonstratives:
 		return "DEMONSTRATIVE"
@@ -42,6 +43,8 @@ def condense_word(word):
 		return "2ND_PERSON"
 	elif word in third_person:
 		return "3RD_PERSON_NEUTRAL"
+	elif word in question:
+		return "QUESTION"
 	elif word in male:
 		return "MALE"
 	elif word in female:
