@@ -1,0 +1,22 @@
+
+
+Do men and women express themselves differently over text? Can we quantify this to learn about male and female writing patterns? This project seeks to accomplish just that!
+
+The dataset consists of sample blog posts, labeled by male and female authors posted here: http://www.cs.uic.edu/~liub/FBS/blog-gender-dataset.rar . To avoid the trouble of dealing with data-manipulation/organization into a csv, the dataset is included in the data folder as "blog-gender-dataset-clean.csv". 
+
+One of the biggest limitations found was that the amount of labeled bodies of text is relatively low. Given the necessity of strong regularization and the presence of high variance without it, more labeled data would certainly help tune this model.  
+
+Included in this project are 4 folders
+	1. blog_classifier - containing the actual classification techniques/implementations and methods for training/testing the data
+
+	2. blog_statistics - running various tests to try and uncover underlying correlations between text patterns in male and females, this includes punctuation usage, average word lengths used, and frequencies of certain words, of which some have been bucketed into groups (ex: {i,im,i'm,me} --> 1ST_PERSON) 
+		-Addtionally, this is where significance of words are determined. The technique I have started with simply looks at the largest/smallest male:female word usage ratios by Z-Score, however I'm sure there are many other statistical techniques that would be useful in determining significant words.
+		-Work could also be done on finding more buckets that help coagulate terms that males/females differ on, this is described more in depth in results.
+
+	3. data - folder containing various files used by the actual statistics/classifier
+	4. results - findings based on current progress / implementation
+
+See if you can top these scores! There are plenty of other correlations / techniques that would be useful for increasing the accuracies described here. The implementations here are only the beginning!
+
+
+

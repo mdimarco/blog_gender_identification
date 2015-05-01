@@ -1,0 +1,161 @@
+
+
+Included are the ROC curves for the original blog post data, and for the refined blog post data using only the "significant" words outlined in the blog_statistics process. For more information on ROC curves, see: http://en.wikipedia.org/wiki/Receiver_operating_characteristic
+
+
+The best results were achieved using Logistic Regression as a classifier with C=0.088 on the data consisting only of the significant terms. They are as follows:
+
+Training:
+
+Training Accuracy: 91%
+#Training Examples: 2903
+
+10-Fold Cross validation accuracy 
+		Mean: 70%
+		Std: 3%
+
+
+Testing:
+Testing Accuracy: 74%
+#Testing Examples: 322
+
+		Precision	Recall	F1-Score
+Female		70%		 70%	   	70%
+Male		77%		 77%		77%
+
+Average		74%		 74%		74%
+
+
+Confusion Matrix:
+
+				F (Predicted)   M (Predicted)
+F (Actual)			100				 42
+M (Actual)			 42				138	
+
+
+
+
+In comparison to results of vanilla dataset:
+
+		Precision	Recall	F1-Score
+Female		68%		 66%	   	67%
+Male		67%		 70%		68%
+
+Average		68%		 68%		68%
+
+
+
+-------------------------------------------------------
+
+
+
+Statistical Findings: 
+
+
+
+Percent Usage of punctuation in body of text, Male vs. Female
+Total Punct: 	 M: 2.93% F: 3.10%
+
+
+Distribution of 9585 found possessive words
+Male: 48.08% 	 Female: 51.92%
+
+
+Average times words appeared:
+
+Female Mean word frequency: 13.45
+Male Mean word frequency: 12.83
+Female Standard Deviation: 407.88
+Male Standard Deviation: 424.59
+
+
+
+############################################################
+############################################################
+############################################################
+####  		Ratio of Male : Female Z-Scores   			####
+############################################################
+############################################################
+
+Interpretation: These Z-Scores show how much of an outlier these
+				words are used in blog posts relative to the mean
+				number of times a word get's used
+
+
+
+Male Dominant Words
+High Male:Female Z-Score Ratio
+___________________
+Words:                  (Male:Female)          Z-Male                 Z-Female
+global                  130.140                0.177                  0.001
+demand                  93.784                 0.128                  0.001
+federal                 93.784                 0.128                  0.001
+application             83.397                 0.113                  0.001
+organizations           74.740                 0.102                  0.001
+net                     69.547                 0.095                  0.001
+app                     64.353                 0.088                  0.001
+species                 53.966                 0.073                  0.001
+owners                  50.503                 0.069                  0.001
+upper                   48.772                 0.066                  0.001
+
+Female Dominant Words
+Low Male:Female Z-Score Ratio
+___________________
+Words:                  (Male:Female)          Z-Male                 Z-Female
+sauce                   0.002                  0.000                  0.163
+sandwich                0.004                  0.000                  0.097
+awhile                  0.007                  0.000                  0.055
+austin                  0.007                  0.000                  0.058
+pray                    0.009                  0.000                  0.043
+babies                  0.010                  0.000                  0.041
+chips                   0.010                  0.000                  0.041
+counter                 0.011                  0.000                  0.036
+pen                     0.011                  0.000                  0.038
+calm                    0.011                  0.000                  0.038
+
+
+############################################################
+############################################################
+############################################################
+##   Changing Dominant Metrics to DIFFERENCE in Z-Scores  ##
+############################################################
+############################################################
+
+
+				
+
+Male Dominant Words
+High Male-Female Z-Score 
+___________________
+Words:                  (Male:Female)          Z-Male                 Z-Female
+ARTICLE                 21.609                 129.151                107.542
+PREPOSITION             18.540                 166.178                147.637
+DEMONSTRATIVE           6.038                  36.193                 30.155
+is                      5.240                  20.795                 15.555
+MALE                    2.601                  14.940                 12.338
+as                      1.962                  9.897                  7.935
+be                      1.375                  9.202                  7.827
+2ND_PERSON              1.298                  16.760                 15.462
+has                     1.261                  4.697                  3.436
+are                     1.243                  8.182                  6.940
+
+Female Dominant Words
+Low Male-Female Z-Score
+___________________
+Words:                  (Male:Female)          Z-Male                 Z-Female
+1ST_PERSON              -25.792                46.971                 72.763
+FEMALE                  -5.193                 5.790                  10.982
+CONJUNCTION             -2.419                 66.154                 68.573
+was                     -1.820                 10.962                 12.782
+had                     -1.369                 3.839                  5.209
+love                    -1.111                 1.016                  2.127
+little                  -0.940                 1.206                  2.147
+all                     -0.654                 5.707                  6.361
+day                     -0.624                 1.694                  2.318
+really                  -0.618                 2.082                  2.701
+
+
+*More information on words in all caps can be found in blog_statistics/blog_stat_helpers.py
+
+
+

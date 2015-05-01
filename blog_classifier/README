@@ -1,0 +1,22 @@
+
+
+
+Actual Classification training/testing of blog data
+
+Usage:
+
+
+python train_test_split.py -data ../data/blog-significant-words.csv
+python blog_gender_classifier.py -training ../data/train.csv -test ../data/test.csv -c log
+
+
+Notes:
+
+	-train_test_split.py loads in, randomly shuffles and then outputs a 90% 10% split for training and test data. Due to the randomness involved, the classifier will perform differently every time train_test_split is called, and will have different accuracy ratings. 
+
+	-blog_gender_classifier works best with logistic regression, however it supports svm/naive bayes/random forest approaches as well, which have had varying degrees of success. I haven't experimented much with regularizing nb or svm, but I believe I found a little bit of a sweet spot for C=0.88. 
+
+	-to run different classifiers, simply change -c [log svm nb rf]. 
+	 The option rf (random forest) also has an optional -trees parameter
+
+	-There is definitely more work that could be put into regularization of the models implemented. Training accuracies, even for log with a tuned C value, hover between high 80s and low 90s.
