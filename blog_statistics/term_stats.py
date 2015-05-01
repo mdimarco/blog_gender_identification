@@ -132,6 +132,6 @@ def term_diff(male_val,female_val):
 		female_val = .01
 	
 
-	return round(male_val-female_val,3)
+	return round(male_val/female_val,3)
 
 
